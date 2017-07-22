@@ -1,8 +1,6 @@
 import org.Book;
 import org.Page;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -12,8 +10,7 @@ public class client {
     static int    PORT = 8080;
     public static void main(String[] args) throws Exception {
         Socket sock = new Socket(HOST, PORT);
-        DataInputStream in = new DataInputStream(sock.getInputStream());
-        DataOutputStream out = new DataOutputStream(sock.getOutputStream());
+        ObjectOutputStream out = new ObjectOutputStream(sock.getOutputStream());
 
         int n = 2;
         ArrayList<Book> books = new ArrayList<>();
@@ -25,9 +22,8 @@ public class client {
             }
             books.add(book);
         }
-        ObjectOutputStream out_wrapper = new ObjectOutputStream(out);
-        out_wrapper.writeObject(books);
-        out_wrapper.flush();
+        out.writeObject(books);
+        out.flush();
         sock.close();
     }
 }
