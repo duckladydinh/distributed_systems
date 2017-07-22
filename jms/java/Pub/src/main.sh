@@ -1,0 +1,7 @@
+echo "PLEASE START THE ACTIVEMQ SERVER BEFORE RUNNING"
+echo "This demo implements an announcement application, one"
+echo "server sends message to two clients, ACTIVEMQ is used"
+echo "-----------------------------------------------------"
+gnome-terminal -x bash -c "javac -cp jms.jar  ReceiverA.java && java -cp :activemq-all-5.15.0.jar ReceiverA; bash"
+gnome-terminal -x bash -c "javac -cp jms.jar  ReceiverB.java && java -cp :activemq-all-5.15.0.jar ReceiverB; bash"
+gnome-terminal -x bash -c "javac -cp jms.jar  Sender.java && java -cp :activemq-all-5.15.0.jar Sender; bash"
